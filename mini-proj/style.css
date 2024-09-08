@@ -1,0 +1,474 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #cdc9dd;
+}
+
+#boxUsers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10vw;
+    flex-wrap: wrap;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+
+}
+
+.boxUser {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 15vh;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+}
+
+.boxUserInfo {
+    border-radius: 5px;
+    margin-top: .4vh;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    border: 1px solid rgba(132, 102, 191, 0.65);
+}
+
+.button {
+
+    margin-top: 2.5vh;
+    position: relative;
+    width: 150px;
+    height: 55px;
+    border-radius: 45px;
+    border: none;
+    background-color: rgb(164, 153, 197);
+    color: white;
+    box-shadow: 0px 10px 10px rgb(210, 187, 253) inset,
+    0px 5px 10px rgba(5, 5, 5, 0.212),
+    0px -10px 10px rgb(129, 67, 246) inset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button::before {
+    width: 70%;
+    height: 2px;
+    position: absolute;
+    background-color: rgba(250, 250, 250, 0.678);
+    content: "";
+    filter: blur(1px);
+    top: 7px;
+    border-radius: 50%;
+}
+
+.button::after {
+    width: 70%;
+    height: 2px;
+    position: absolute;
+    background-color: rgba(250, 250, 250, 0.137);
+    content: "";
+    filter: blur(1px);
+    bottom: 7px;
+    border-radius: 50%;
+}
+
+.button:hover {
+    animation: jello-horizontal 0.9s both;
+}
+
+@keyframes jello-horizontal {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.href {
+    color: #cdc9dd;
+    text-decoration: none;
+    width: 150px;
+    height: 55px;
+    align-content: center;
+
+}
+
+.ul {
+    display: flex;
+    justify-content: center;
+    gap: 20vh;
+}
+
+#foolInfo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.boxInfo {
+    transition: 1s;
+    margin-top: 15vh;
+    width: 50vw;
+    height: 70vh;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+}
+
+.arrow {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 2vh;
+    margin-left: 2vh;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.arrow:hover {
+    /*  animation:borderAni 5s cubic-bezier(0, 0.6, 1, 0.4); */
+    border: solid 2px #92899c;
+    border-radius: 50%;
+}
+
+.arrow:after {
+    position: absolute;
+    display: block;
+    content: "";
+    color: #a37abc;
+
+    width: 20px;
+    height: 15px;
+    /*   border:solid 1px;  */
+    top: -1px;
+    border-bottom: solid 2px;
+    transform: translatex(4px);
+}
+
+.arrow:before {
+    position: absolute;
+    display: block;
+    content: "";
+    color: #a37abc;
+    width: 8px;
+    height: 8px;
+    /*   border:solid 1px;  */
+    border-top: solid 2px;
+    border-left: solid 2px;
+    top: 50%;
+    left: 2px;
+    transform-origin: 0% 0%;
+    transform: rotatez(-45deg);
+
+}
+
+.arrow:hover:before {
+    animation: aniArrow01 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+}
+
+.arrow:hover:after {
+    animation: aniArrow02 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+}
+
+
+@keyframes aniArrow01 {
+    0% {
+        transform: rotatez(-45deg) translateY(30px) translateX(30px);
+    }
+    100% {
+        transform: rotatez(-45deg) translateY(-35px) translateX(-35px);
+    }
+}
+
+
+@keyframes aniArrow02 {
+    0% {
+        transform: translateX(45px);
+    }
+    100% {
+        transform: translateX(-44px);
+    }
+}
+
+@keyframes borderAni {
+    0% {
+        border: solid 2px #9f89c3;
+    }
+    100% {
+        border: solid 2px white;
+
+        border-radius: 50%;
+    }
+}
+
+.link {
+    width: 300px;
+    position: absolute;
+    height: 100px;
+    /*background: black;*/
+    z-index: 1;
+}
+
+.boxFoolInfo {
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 90%;
+    height: 17vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+    gap: 10%;
+
+}
+
+.foolInfoFirstBox {
+    width: 40%;
+    height: 100%;
+}
+
+.boxAddress {
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 90%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+    gap: 10%;
+
+}
+
+.boxButton {
+    transition: 1s;
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 90%;
+    height: 15%;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+    gap: 10%;
+}
+
+.boxButtonAdd {
+    transition: 1s;
+    height: 43%;
+}
+
+.boxInfoAdd {
+    margin-bottom: 10vh;
+    height: 105vh;
+    transition: .8s;
+}
+
+.boxButtonAll {
+    gap: 15%;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxTitle {
+    transition: .7s;
+    height: 20%;
+    width: 100%;
+    /*background: #92899c ;*/
+}
+
+.a {
+    width: 100%;
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    z-index: 1;
+    height: 100%;
+    align-content: center;
+    color: #000000;
+    text-decoration: none;
+    /*background: black;*/
+}
+
+/* From Uiverse.io by cssbuttons-io */
+.buttonPost {
+    position: relative;
+    font-size: 1vw;
+    text-transform: uppercase;
+    text-decoration: none;
+    /*padding: 1em 2em;*/
+    width: 35%;
+    height: 30%;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    color: black;
+    background-color: #cbbbdc;
+}
+
+.buttonPost:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.buttonPost:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.buttonPost::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.buttonPost::after {
+    background-color: #c3b1d6;
+}
+
+.buttonPost:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.boxTitles {
+    display: flex;
+    /*align-items: center;*/
+    justify-content: space-between;
+    /*gap: 30px;*/
+    flex-wrap: wrap;
+}
+
+.boxOneTitle {
+    transition: .6s;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border: 1px solid rgba(132, 102, 191, 0.65);
+    height: 15vh;
+    width: 17%;
+
+}
+
+.displayNone {
+    display: none;
+}
+
+.sizeButton {
+    margin-bottom: 5px;
+    width: 6vw;
+}
+
+
+/***************post-details.html***********/
+.postDetails {
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 90%;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+    gap: 10%;
+}
+
+.liBody {
+    /*flex-wrap: wrap;*/
+    width: 130%;
+    height: 10vh;
+}
+
+.liBodyTwo {
+    flex-wrap: wrap;
+    /*width: 60%;*/
+    height: 10vh;
+}
+
+.boxPosts {
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 90%;
+    height: 47vh;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+    flex-wrap: wrap;
+
+}
+
+.boxPost {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    text-align: center;
+    width: 10.5vw;
+    height: 22.3vh;
+    border: 1.5px solid rgba(132, 102, 191, 0.65);
+
+}
+li {
+
+}
+.ulLeft{
+    padding-top: 1vh;
+    font-size: 1vw;
+}
+
+.boxInfoPost {
+    height: 80vh;
+}
+.ulPost{
+    flex-wrap: wrap;
+    margin: 0;
+    padding-left: 13px;
+    padding-right: 5px;
+    font-size: .7vw;
+}

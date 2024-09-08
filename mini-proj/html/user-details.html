@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        li {
+            margin-top: 15px;
+            font-size: 1.1vw;
+        }
+
+        p {
+            width: 100%;
+            height: 8vh;
+            text-align: center;
+            display: block;
+            overflow-y: scroll;
+
+
+        }
+        p::-webkit-scrollbar{
+            background: rgba(196, 187, 202, 0.71);
+            width: 10px;
+            height: 4px;
+            border-radius: 10px ;
+        }
+    </style>
+</head>
+<body>
+
+<div id="foolInfo">
+
+</div>
+
+<script>
+    const url = new URL(location.href);
+    const id = url.searchParams.get('id');
+    // На странице user-details.html:
+    // 4 Вивести всю, без виключення, інформацію про об'єкт user на який клікнули
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then(res => res.json())
+        .then(user => {
+            const foolInfo = document.getElementById('foolInfo');
+
+            const boxInfo = document.createElement('div');
+            const arrow = document.createElement('div');
+            const a = document.createElement('a');
+            const boxFoolInfo = document.createElement('div');
+            const foolInfoFirstBox = document.createElement('div');
+            const foolInfoSecondBox = document.createElement('div');
+            const boxAddress = document.createElement('div');
+            const addressFirstBox = document.createElement('div');
+            const addressSecondBox = document.createElement('div');
+            const boxCompany = document.createElement('div');
+            const companyFirstBox = document.createElement('div');
+            const companySecondBox = document.createElement('div');
+            const boxButton = document.createElement('div');
+            const boxButtonAll = document.createElement('div');
+
+            const postOfCurrentUser = document.createElement('button');
+
+            const boxTitles = document.createElement('div');
+
+
+            const ulFirst = document.createElement('ul');
+            const ulSecond = document.createElement('ul');
+            const liId = document.createElement('li');
+            const liName = document.createElement('li');
+            const liPhone = document.createElement('li');
+            const liUsername = document.createElement('li');
+            const liEmail = document.createElement('li');
+            const liWeb = document.createElement('li');
+
+            const ulFirstAddress = document.createElement('ul');
+            const ulSecondAddress = document.createElement('ul');
+            const liCity = document.createElement('li');
+            const liStreet = document.createElement('li');
+            const liZipcode = document.createElement('li');
+            const liSuite = document.createElement('li');
+
+            const ulFirstCompany = document.createElement('ul');
+            const ulSecondCompany = document.createElement('ul');
+            const liCompanyName = document.createElement('li');
+            const liCatchPhrase = document.createElement('li');
+            const liBs = document.createElement('li');
+
+            arrow.classList.add('arrow');
+            boxInfo.classList.add('boxInfo')
+            a.classList.add('link');
+            boxFoolInfo.classList.add('boxFoolInfo');
+            foolInfoFirstBox.classList.add('foolInfoFirstBox');
+            foolInfoSecondBox.classList.add('foolInfoFirstBox');
+            addressFirstBox.classList.add('foolInfoFirstBox');
+            addressSecondBox.classList.add('foolInfoFirstBox');
+            boxAddress.classList.add('boxAddress');
+            boxCompany.classList.add('boxAddress');
+            companySecondBox.classList.add('foolInfoFirstBox');
+            companyFirstBox.classList.add('foolInfoFirstBox')
+
+            boxButton.classList.add('boxButton');
+            postOfCurrentUser.classList.add('buttonPost');
+            boxButtonAll.classList.add('boxButtonAll');
+
+            boxTitles.classList.add('boxTitles');
+            boxTitles.classList.add('displayNone');
+
+            liId.innerText = `Id: ${user.id}`;
+            liName.innerText = `Name: ${user.name}`;
+            liUsername.innerText = `Username: ${user.username}`;
+            liPhone.innerText = `Phone: ${user.phone}`;
+            liEmail.innerText = `Email: ${user.email}`;
+            liWeb.innerText = `Web: ${user.website}`;
+
+            liCity.innerText = `City: ${user.address.city}`;
+            liStreet.innerText = `Street: ${user.address.street}`;
+            liSuite.innerText = `Suite: ${user.address.suite}`;
+            liZipcode.innerText = `Web: ${user.address.zipcode}`;
+
+            liCompanyName.innerText = `Name: ${user.company.name}`;
+            liBs.innerText = `Bs: ${user.company.bs}`;
+            liCatchPhrase.innerText = `CatchPhrase: ${user.company.catchPhrase}`;
+
+            postOfCurrentUser.innerText = "post of current user";
+            // aLinkNext.innerText = 'next';
+            //
+            a.href = 'index.html';
+
+            postOfCurrentUser.addEventListener('click', function () {
+                boxButton.classList.toggle('boxButtonAdd');
+
+                fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`)
+                    .then(res => res.json())
+                    .then(value => {
+
+                        boxTitles.innerText = '';
+                        boxTitles.classList.toggle('displayNone');
+
+                        for (const valueElement of value) {
+
+                            const boxTitle = document.createElement('div');
+                            const pTitle = document.createElement('p');
+                            const buttonTransfer = document.createElement('button');
+                            const aLinkNext = document.createElement('a');
+
+                            boxTitle.innerText = ''
+                            boxTitle.classList.add('boxOneTitle');
+                            buttonTransfer.classList.add('buttonPost');
+                            buttonTransfer.classList.add('sizeButton');
+                            aLinkNext.classList.add('a');
+
+                            aLinkNext.innerText = 'next';
+                            pTitle.innerText = valueElement.title;
+
+                            aLinkNext.href = `post-details.html?post=${JSON.stringify(valueElement)}`;
+
+
+                            boxTitles.append(boxTitle);
+                            boxTitle.append(pTitle, buttonTransfer);
+                            buttonTransfer.append(aLinkNext);
+
+                        }
+                        boxTitles.classList.toggle('boxTitle');
+                        boxInfo.classList.toggle('boxInfoAdd');
+                    })
+            })
+
+            foolInfo.append(boxInfo,);
+            boxInfo.append(arrow, boxFoolInfo, boxAddress, boxCompany, boxButton);
+            boxFoolInfo.append(foolInfoFirstBox, foolInfoSecondBox);
+            foolInfoFirstBox.append(ulFirst);
+            foolInfoSecondBox.append(ulSecond);
+
+            ulFirst.append(liId, liName, liUsername);
+            ulSecond.append(liEmail, liPhone, liWeb);
+
+            boxAddress.append(addressFirstBox, addressSecondBox);
+            addressFirstBox.append(ulFirstAddress);
+            addressSecondBox.append(ulSecondAddress);
+            ulFirstAddress.append(liCity, liStreet);
+            ulSecondAddress.append(liSuite, liZipcode);
+
+            boxCompany.append(companyFirstBox, companySecondBox);
+            companyFirstBox.append(ulFirstCompany);
+            companySecondBox.append(ulSecondCompany);
+            ulFirstCompany.append(liBs, liCompanyName);
+            ulSecondCompany.append(liCatchPhrase);
+
+            boxButton.append(boxButtonAll, boxTitles);
+            boxButtonAll.append(postOfCurrentUser);
+            // buttonTransfer.append(aLinkNext);
+
+            arrow.append(a);
+        })
+    // 5 Додати кнопку "post of current user", при кліку на яку, з'являються title всіх постів поточного юзера
+    // (для получения постов используйте эндпоинт https://jsonplaceholder.typicode.com/users/USER_ID/posts)
+    //     6 Каждому посту додати кнопку/посилання, при кліку на яку відбувається перехід на сторінку post-details.html,
+
+</script>
+
+</body>
+</html>

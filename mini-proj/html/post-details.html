@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<style>
+
+</style>
+<body>
+<div id="foolInfo">
+
+</div>
+
+<script>
+    // На странице post-details.html:
+    // 7 Вивести всю, без виключення, інформацію про об'єкт post на який клікнули .
+    // 8 Нижчє інформаці про пост, вивести всі коментарі поточного поста (ендпоінт
+    // - https://jsonplaceholder.typicode.com/posts/POST_ID/comments)
+
+    const url = new URL(location.href);
+    const postString = url.searchParams.get('post');
+    const post = JSON.parse(postString);
+
+    console.log(post);
+
+    const foolInfo = document.getElementById('foolInfo');
+
+    const boxInfo = document.createElement('div');
+    const arrow = document.createElement('div');
+    const a = document.createElement('a');
+    const postDetails = document.createElement('div');
+    const postDetailsLeftSection = document.createElement('div');
+    const postDetailsRightSection = document.createElement('div');
+    const ulLeft = document.createElement('ul');
+    const ulRight = document.createElement('ul');
+    const liBody = document.createElement('li');
+    const liId = document.createElement('li');
+    const liTitle = document.createElement('li');
+    const liUserId = document.createElement('li');
+
+    const boxPosts = document.createElement('div');
+
+    arrow.classList.add('arrow');
+    boxInfo.classList.add('boxInfo')
+    boxInfo.classList.add('boxInfoPost')
+    a.classList.add('link');
+    postDetails.classList.add('postDetails');
+    liBody.classList.add('liBody');
+    liTitle.classList.add('liBodyTwo');
+    ulRight.classList.add('ulLeft');
+    ulLeft.classList.add('ulLeft');
+
+    boxPosts.classList.add('boxPosts');
+
+    liBody.innerText = `Body: ${post.body}`;
+    liId.innerText = `Id: ${post.id}`;
+    liUserId.innerText = `UserId: ${post.userId}`;
+    liTitle.innerText = `Title: ${post.title}`;
+
+
+    a.href = 'index.html';
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`)
+        .then(res => res.json())
+        .then(comments => {
+            for (const comment of comments) {
+
+                const boxPost = document.createElement('div');
+                const ulBoxPost = document.createElement('ul');
+                const liBoxIdPost = document.createElement('li');
+                const liBoxBodyPost = document.createElement('li');
+                const liBoxEmailPost = document.createElement('li');
+                const liBoxNamePost = document.createElement('li');
+
+                boxPost.classList.add('boxPost');
+                ulBoxPost.classList.add('ulPost');
+
+                liBoxBodyPost.innerText = `Body: ${comment.body}`;
+                liBoxEmailPost.innerText = `Email: ${comment.email}`;
+                liBoxNamePost.innerText = `Name: ${comment.name}`;
+                liBoxIdPost.innerText = `Id: ${comment.id}`;
+
+                boxPosts.append(boxPost);
+                boxPost.append(ulBoxPost);
+                ulBoxPost.append(liBoxIdPost, liBoxBodyPost, liBoxEmailPost, liBoxNamePost)
+            }
+        })
+
+    foolInfo.append(boxInfo);
+    boxInfo.append(arrow, postDetails, boxPosts);
+    postDetails.append(postDetailsLeftSection, postDetailsRightSection);
+
+    postDetailsLeftSection.append(ulLeft);
+    postDetailsRightSection.append(ulRight);
+    ulLeft.append(liId, liBody);
+    ulRight.append(liUserId, liTitle);
+
+    arrow.append(a);
+
+</script>
+</body>
+</html>
